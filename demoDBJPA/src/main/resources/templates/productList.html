@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Create New Product</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form action="productRetrieveByCategory" method ="post">
+  類別:<select name = "productCategory" th:field="${productCategory.id}">
+  <option th:each="productCategory : ${allProductCategories}" 
+          th:value="${productCategory.id}" 
+          th:text="${productCategory.name}">商業</option>
+</select>
+ <input type="submit" value="Submit"/>
+  <a href="productRetrieveAll"><input type="button" value="Show All Product"/></a>
+</form>
+<a href="productCreate" class="btn btn-primary">新增產品</a>
+
+<div class="container">
+     
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>名稱</th>
+        <th>類型</th>
+        <th>存量</th>
+        <th>安全存量</th>
+        <th>顏色</th>
+        <th>型號</th>
+        <th>公司</th>
+        <th>訂價</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="product : ${products} " th:object="${product}">
+        <td th:text="*{id}">1</td>
+			<td th:text="*{name}">Ben</td>
+			<td th:text="*{productCategory.name}">Ben</td>
+			<td th:text="*{amount}">Fu Jen</td>
+			<td th:text="*{safeamount}">56</td>
+			<td th:text="*{color}">56</td>
+			<td th:text="*{model}">56</td>
+			<td th:text="*{company}">56</td>
+			<td th:text="*{price}">56</td>
+			<td><a th:href="@{productUpdate(id=${product.id})}" class="btn btn-info">修改</a> <a
+				th:href="@{productDelete(id=${product.id})}" class="btn btn-danger">刪除</a></td>
+		</tr>
+    </tbody>
+  </table>
+</div>
+<div class="alert alert-success">
+  <strong>成功!</strong> 這是一個小標籤</div>
+
+</body>
+</html>

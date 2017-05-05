@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update Product</title>
+</head>
+<body>
+
+<form action="productUpdate" th:object="${product}" method ="post">
+
+ID:<input type="text" name="id" th:field="*{id}"/><br/>
+名稱:<input type="text" name="name" th:field="*{name}"/><br/>
+類型:<select name = "productCategory" th:field="*{productCategory}">
+  <option th:each="productCategory : ${allProductCategories}" 
+          th:value="${productCategory.id}" 
+          th:text="${productCategory.name}">商業</option>
+</select>
+存量:<input type="text" name ="amount" th:field="*{amount}"/><br/>
+安全存量:<input type="text" name ="safeamount" th:field="*{safeamount}"/><br/>
+顏色:<input type="text" name ="color" th:field="*{color}"/><br/>
+型號:<input type="text" name ="model" th:field="*{model}"/><br/>
+公司:<input type="text" name ="company" th:field="*{company}"/><br/>
+訂價:<input type="text" name ="price" th:field="*{price}"/><br/>
+ <input type="hidden" name ="id" th:field="*{id}"/>
+ <input type="submit" value="Submit"/>
+
+</form>
+
+</body>
+</html>

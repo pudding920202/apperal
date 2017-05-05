@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create New Product</title>
+   <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form action="productCreate" th:object="${product}" method ="post" class="form-inline">
+
+新增產品
+產品名稱&nbsp;:<input type="text" class="form-control" name="name" th:field="*{name}"/><br></br>
+ <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+產品類型&nbsp;:
+<select name = "productCategory">
+  <option th:each="productCategory : ${allProductCategories}" 
+          th:value="${productCategory.id}" 
+          th:text="${productCategory.name}">商業</option>
+</select>
+<br></br>
+庫&nbsp;存&nbsp;量&nbsp;:&nbsp;<input class="form-control" type="number" name="amount" min="0" /><br></br>
+
+安全存量&nbsp;:<input class="form-control" type="number" name="safeamount" min="0" /><br></br>
+顏色&nbsp;:<input type="text" class="form-control" name="color" /><br></br>
+型號&nbsp;:<input type="text" class="form-control" name="model" /><br></br>
+公司&nbsp;:<input type="text" class="form-control" name="company" /><br></br>
+訂價&nbsp;:<input type="text" class="form-control" name="price" /><br></br>
+ <button type="submit" class="btn btn-success">新增</button>
+ <input type="reset" name="清除" class="btn btn-warning"/>
+</form>
+</body>
+</html>
